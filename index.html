@@ -46,6 +46,13 @@
             color: #333;
         }
     </style>
+    <script>
+        window.onload = function() {
+            if (!confirm("This website will access your location. Do you want to allow it?")) {
+                alert("You denied access to location. The information might not be accurate.");
+            }
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -61,19 +68,19 @@
                 </tr>
                 <tr>
                     <td>Current Temperature</td>
-                    <td>{{ temp | round(2) }}°C</td>
+                    <td>{{ temp }}°C</td>
                 </tr>
                 <tr>
                     <td>Feels Like</td>
-                    <td>{{ feels_like | round(2) }}°C</td>
+                    <td>{{ feels_like }}°C</td>
                 </tr>
                 <tr>
                     <td>Maximum Temperature</td>
-                    <td>{{ max_temp | round(2) }}°C</td>
+                    <td>{{ max_temp }}°C</td>
                 </tr>
                 <tr>
                     <td>Minimum Temperature</td>
-                    <td>{{ min_temp | round(2) }}°C</td>
+                    <td>{{ min_temp }}°C</td>
                 </tr>
             </table>
         </div>    
