@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, Response
 import requests
 from urllib.request import urlopen
 import json
@@ -38,8 +38,22 @@ def index():
         'Your Time Zone': YourLoc.get('timezone')
     }
 
-    # Render the HTML template with data
-    return render_template('index.html', temp=temp, feels_like=feels_like, max_temp=max_temp, min_temp=min_temp, location_data=location_data)
+    # Read the HTML file and insert the data
+    with open('index.html', 'r') as file:
+        html = file.read()
+        
+    # Insert the data into the HTML content
+    html = html.replace('{{ temp:.2f }}', f"{temp:.2f}")
+    html = html.replace('{{ feels_like:.2f }}', f"{feels_like:.2f}")
+    html = html.replace('{{ max_temp:.2f }}', f"{max_temp:.2f}")
+    html = html.replace('{{ min_temp:.2f }}', f"{min_temp:.2f}")
+
+    # For each key-value pair in location_data, replace the corresponding placeholder in the HTML
+    for key, value in location_data.items():
+        placeholder = f'{{{{ {key} }}}}'
+        html = html.replace(placeholder, str(value))
+
+    return Response(html, mimetype='text/html')
 
 if __name__ == '__main__':
     app.run(debug=True)
