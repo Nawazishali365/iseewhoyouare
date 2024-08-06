@@ -31,7 +31,7 @@
         th, td {
             padding: 12px;
             text-align: left;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #ddd.
         }
         th {
             background-color: #f4f4f4;
@@ -45,7 +45,23 @@
         h2 {
             color: #333;
         }
+        .link-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .link-container a {
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: bold;
+        }
     </style>
+    <script>
+        function getLocationPermission() {
+            if (confirm("This website will access your location. Do you want to allow it?")) {
+                window.location.href = "/";
+            }
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -92,12 +108,9 @@
                 {% endfor %}
             </table>
         </div>
+        <div class="link-container">
+            <a href="javascript:void(0);" onclick="getLocationPermission()">Get Weather and Location Data</a>
+        </div>
     </div>
-    <script>
-        if (confirm("This website will access your location. Do you want to allow it?")) {
-        } else {
-            alert("Location access denied. Some functionalities may not work as expected.");
-        }
-    </script>
 </body>
 </html>
