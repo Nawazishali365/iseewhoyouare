@@ -67,6 +67,9 @@
     <header>
         <h1>Weather and Location Information</h1>
     </header>
+        <div class="link-container">
+            <a href="javascript:void(0);" onclick="getLocationPermission()">Get Weather and Location Data</a>
+        </div>
     <div class="container">
         <div class="weather-info">
             <h2>Current Weather</h2>
@@ -107,9 +110,6 @@
                 </tr>
                 {% endfor %}
             </table>
-        </div>
-        <div class="link-container">
-            <a href="javascript:void(0);" onclick="getLocationPermission()">Get Weather and Location Data</a>
         </div>
     </div>
 </body>
